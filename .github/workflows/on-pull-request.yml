@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install sfdx
-        run: |
-          mkdir sfdx
-          wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-          ./sfdx/install
+      run: |
+        mkdir sfdx
+        wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
+        ./sfdx/install
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
