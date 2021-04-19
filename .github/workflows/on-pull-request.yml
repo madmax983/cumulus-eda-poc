@@ -5,9 +5,6 @@ on: [pull_request]
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
-  CUMULUSCI_ORG_devhub: '{"username": "mark.masterson@testpartner.com", "instance_url": "https://testingpartner23-dev-ed.my.salesforce.com"}'
-  SFDX_CLIENT_ID: ${{ secrets.SFDX_CLIENT_ID }}
-  SFDX_HUB_KEY: ${{ secrets.SFDX_HUB_KEY }}
 
 jobs:
   unit_tests:
@@ -20,6 +17,8 @@ jobs:
         mkdir sfdx
         wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
         ./sfdx/install
+        echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
+        sfdx force:auth:sfdxurl:store -f sfdx_auth -d
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
