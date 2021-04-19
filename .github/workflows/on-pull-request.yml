@@ -28,4 +28,4 @@ jobs:
         python -m pip install -U pip
         pip install cumulusci
     - run: |
-        cci flow run ci_feature --org dev --delete-org
+        cci flow run pull_request --org dev --delete-org
