@@ -50,21 +50,21 @@ flows:
             6:
                 task: deploy
                 when: project_config.project__source_format != "sfdx" or not org_config.scratch
-            6.1:
+            7:
                 task: deploy
                 when: project_config.project__source_format == "sfdx" and org_config.scratch
-            7.
+            8:
                 task: uninstall_packaged_incremental
                 when: project_config.project__source_format != "sfdx" or not org_config.scratch
-            8.
+            9:
                 task: snapshot_changes
-            9.
+            10:
                 task: deploy_post
-            10.
+            11:
                 task: update_admin_profile
-            11.
+            12:
                 task: run_tests
-                
+
 plans:
     install:
         slug: install
