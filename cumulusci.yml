@@ -1,0 +1,51 @@
+minimum_cumulusci_version: '3.1.0'
+project:
+    name: CCI-EDA-POC
+    package:
+        name:  Cumulus EDA POC
+        namespace: cumuluspoc
+        api_version: '51.0'
+    source_format: sfdx
+    git:
+        repo_url: "https://github.com/madmax983/cumulus-eda-poc"
+    dependencies:
+      - github: https://github.com/SalesforceFoundation/EDA
+
+sources:
+    eda:
+        github: https://github.com/SalesforceFoundation/EDA
+
+tasks:
+    robot:
+        options:
+            suites: robot/CCI-Food-Bank/tests
+            options:
+                outputdir: robot/CCI-Food-Bank/results
+
+    robot_testdoc:
+        options:
+            path: robot/CCI-Food-Bank/tests
+            output: robot/CCI-Food-Bank/doc/CCI-Food-Bank_tests.html
+
+    deploy_qa:
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/qa
+
+flows:
+    config_qa:
+        steps:
+            3:
+                task: load_dataset
+            4:
+                task: deploy_qa
+
+plans:
+    install:
+        slug: install
+        title: Install CCI Food Bank
+        tier: primary
+        is_listed: True
+        steps:
+            1:
+                flow: install_prod
