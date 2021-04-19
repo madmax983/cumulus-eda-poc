@@ -3,12 +3,11 @@ name: Apex Tests
 on: [pull_request]
 
 env:
-  env:
-    CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
-    CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
-    CUMULUSCI_ORG_devhub: '{"username": "mark.masterson@testpartner.com", "instance_url": "https://testingpartner23-dev-ed.my.salesforce.com"}'
-    SFDX_CLIENT_ID: ${{ secrets.SFDX_CLIENT_ID }}
-    SFDX_HUB_KEY: ${{ secrets.SFDX_HUB_KEY }}
+  CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
+  CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
+  CUMULUSCI_ORG_devhub: '{"username": "mark.masterson@testpartner.com", "instance_url": "https://testingpartner23-dev-ed.my.salesforce.com"}'
+  SFDX_CLIENT_ID: ${{ secrets.SFDX_CLIENT_ID }}
+  SFDX_HUB_KEY: ${{ secrets.SFDX_HUB_KEY }}
 
 jobs:
   unit_tests:
