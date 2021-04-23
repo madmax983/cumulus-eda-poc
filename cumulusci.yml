@@ -36,7 +36,7 @@ flows:
     ci_feature:
         steps:
             0.5:
-                task: none
+                task: None
 
 plans:
     install:
