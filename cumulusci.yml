@@ -33,37 +33,10 @@ tasks:
             path: unpackaged/config/qa
 
 flows:
-    pull_request:
+    ci_feature:
         steps:
-            1:
-                task: update_dependencies
-            2:
-                task: deploy_pre
-            3:
-                task: dx_convert_from
-                when: project_config.project__source_format == "sfdx" and not org_config.scratch
-            4:
-                task: unschedule_apex
-            5:
-                task: update_package_xml
-                when: project_config.project__source_format != "sfdx" or not org_config.scratch
-            6:
-                task: deploy
-                when: project_config.project__source_format != "sfdx" or not org_config.scratch
-            7:
-                task: deploy
-                when: project_config.project__source_format == "sfdx" and org_config.scratch
-            8:
-                task: uninstall_packaged_incremental
-                when: project_config.project__source_format != "sfdx" or not org_config.scratch
-            9:
-                task: snapshot_changes
-            10:
-                task: deploy_post
-            11:
-                task: update_admin_profile
-            12:
-                task: run_tests
+            0.5:
+                task: none
 
 plans:
     install:
