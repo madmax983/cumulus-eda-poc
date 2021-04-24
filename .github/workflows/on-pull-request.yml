@@ -1,10 +1,6 @@
 name: Apex Tests
 
-on:
-  push:
-    branches:
-      - feature/**
-      - main
+on: [pull_request]
 
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
