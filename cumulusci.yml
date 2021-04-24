@@ -31,13 +31,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/qa
-
-flows:
-    ci_feature:
-        steps:
-            0.5:
-                task: None
-
+            
 plans:
     install:
         slug: install
