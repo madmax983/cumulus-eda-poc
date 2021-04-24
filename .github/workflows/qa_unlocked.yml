@@ -1,18 +1,20 @@
-name: Apex Tests
+name: Build QA Unlocked Package
 
 on:
   push:
     branches:
-      - feature/**
-      - main
+      - develop
 
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
+  CUMULUSCI_ORG_qa: {"username": "mark.masterson@rnp.unlockedacumuluspoc", "instance_url": "https://unlockedacumuluspoc-dev-ed.my.salesforce.com"}
+  SFDX_CLIENT_ID: {{ $secrets.SFDX_CLIENT_ID }}
+  SFDX_HUB_KEY: {{ $secrets.SFDX_HUB_KEY }}
 
 jobs:
   unit_tests:
-    name: "Run Apex tests"
+    name: "Build QA Unlocked Package"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -31,5 +33,11 @@ jobs:
       run: |
         python -m pip install -U pip
         pip install cumulusci
-    - run: |
-        cci flow run ci_feature --org feature --delete-org
+    - name: Create Unlocked Package
+      run: |
+        cci task run create_package_version --package_type Unlocked --package_name CumulusEDAPOC-Unlocked > subscriberVersionId
+    - name: Install in QA org
+      run: |
+        cci task run update_dependencies --org qa
+        cci task run promote_package_version --version_id subscriberVersionId
+        ci task run install_managed --org qa --version subscriberVersionId
