@@ -35,7 +35,7 @@ jobs:
         pip install cumulusci
     - name: Create Unlocked Package
       run: |
-        cci task run create_package_version --package_type Unlocked > subscriberVersionId
+        cci task run create_package_version --package_type Unlocked --package_name CumulusEDAPOC-Unlocked > subscriberVersionId
     - name: Install in QA org
       run: |
         cci task run update_dependencies --org qa
