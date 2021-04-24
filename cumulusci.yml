@@ -32,12 +32,6 @@ tasks:
         options:
             path: unpackaged/config/qa
 
-flows:
-    ci_feature:
-        steps:
-            0.5:
-                task: None
-
 plans:
     install:
         slug: install
