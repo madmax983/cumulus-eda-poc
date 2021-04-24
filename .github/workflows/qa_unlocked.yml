@@ -8,7 +8,7 @@ on:
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
-  CUMULUSCI_ORG_qa: {"username": "mark.masterson@rnp.unlockedacumuluspoc", "instance_url": "https://unlockedacumuluspoc-dev-ed.my.salesforce.com"}
+  CUMULUSCI_ORG_qa: ${{ secrets.CUMULUSCI_ORG_qa }}
   SFDX_CLIENT_ID: {{ $secrets.SFDX_CLIENT_ID }}
   SFDX_HUB_KEY: {{ $secrets.SFDX_HUB_KEY }}
 
