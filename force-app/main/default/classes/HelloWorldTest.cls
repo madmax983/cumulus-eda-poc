@@ -9,5 +9,6 @@ private class HelloWorldTest {
         hed__Course__c course = new hed__Course__c();
         course.hed__Account__c = acc.Id;
         course.Name = 'Test Course';
+        System.assertEquals('Hello World', HelloWorld.printHelloWorld());
     }
 }
