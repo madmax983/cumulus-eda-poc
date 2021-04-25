@@ -62,6 +62,8 @@ flows:
                 task: update_dependencies
             2.0:
                 task: install_managed
+                options:
+                    name: CumulusEDAPOC-Unlocked
 
 plans:
     install:
