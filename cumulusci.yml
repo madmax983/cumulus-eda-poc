@@ -37,6 +37,18 @@ flows:
         steps:
             0.5:
                 task: None
+    qa_unlocked_build:
+        steps:
+            1.0:
+                task: update_dependencies
+            2.0:
+                task: create_package_version
+    qa_unlocked_install:
+        steps:
+            1.0:
+                task: update_dependencies
+            2.0:
+                task: install_managed
 
 plans:
     install:
