@@ -50,11 +50,11 @@ flows:
             3:
                 task: promote_package_version
                 options:
-                    version_id: ^^promote_package_version.version_id
+                    version_id: ^^create_package_version.version_id
             4:
                 task: command
                 options:
-                    command: echo ^^promote_package_version.version_id > version_id
+                    command: echo ^^create_package_version.version_id > version_id
     qa_unlocked_install:
         steps:
             1.0:
