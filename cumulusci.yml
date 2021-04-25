@@ -38,14 +38,23 @@ flows:
             0.5:
                 task: None
     qa_unlocked_build:
+        description: Upload and install an unlocked package in the QA test org.
         steps:
-            1.0:
+            1:
                 task: update_dependencies
-            2.0:
+            2:
                 task: create_package_version
                 options:
                     package_type: Unlocked
                     package_name: CumulusEDAPOC-Unlocked
+            3:
+                task: promote_package_version
+                options:
+                    version_id: ^^promote_package_version.version_id
+            4:
+                task: command
+                options:
+                    command: echo ^^promote_package_version.version_id > version_id
     qa_unlocked_install:
         steps:
             1.0:

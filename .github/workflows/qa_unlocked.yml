@@ -38,7 +38,4 @@ jobs:
         cci flow run qa_unlocked_build --org feature > subscriberVersionId
     - name: Install in QA org
       run: |
-        cci task run promote_package_version --version_id subscriberVersionId
-    - name: Install in QA org
-      run: |
-        cci flow run qa_unlocked_install --org qa -o install_managed__version subscriberVersionId
+        cci flow run qa_unlocked_install --org qa -o install_managed__version version_id
