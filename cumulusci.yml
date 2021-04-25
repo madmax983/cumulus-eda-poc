@@ -33,12 +33,10 @@ tasks:
             path: unpackaged/config/qa
 
 flows:
-    config_qa:
+    ci_feature:
         steps:
-            3:
-                task: load_dataset
-            4:
-                task: deploy_qa
+            0.5:
+                task: None
 
 plans:
     install:
