@@ -43,6 +43,9 @@ flows:
                 task: update_dependencies
             2.0:
                 task: create_package_version
+                options:
+                    package_type: Unlocked
+                    package_name: CumulusEDAPOC-Unlocked
     qa_unlocked_install:
         steps:
             1.0:
