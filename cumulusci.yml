@@ -64,7 +64,6 @@ flows:
                 task: install_managed
                 options:
                     name: CumulusEDAPOC-Unlocked
-                    version: ${{ env.subscriber_package_version_id }}
 
 plans:
     install:
