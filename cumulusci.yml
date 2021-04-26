@@ -38,7 +38,7 @@ flows:
             0.5:
                 task: None
     qa_unlocked_build:
-        description: Upload and install an unlocked package in the QA test org.
+        description: Upload and install an unlocked package
         steps:
             1:
                 task: update_dependencies
@@ -53,16 +53,21 @@ flows:
                 options:
                     version_id: ^^create_package_version.subscriber_package_version_id
                     promote_dependencies: True
-            4:
+            4:  
+                task: command
+                options:
+                    command: echo ::set-ouput name=SUBSCRIBER_VERSION_ID::$(echo $SUBSCRIBER_VERSION_ID)
+                    env:
+                        SUBSCRIBER_VERSION_ID: ^^create_package_version.subscriber_package_version_id
+                    interactive: True
+                    passenv: True
+    qa_unlocked_install:
+        description: Install the current unlocked pacakge in a QA test org.
+        steps:
+            1:
                 task: update_dependencies
-                options:
-                    org: qa
-            5:
+            2:
                 task: install_managed
-                options:
-                    name: CumulusEDAPOC-UnlockedOrgDependent
-                    org: qa
-                    version: ^^create_package_version.subscriber_package_version_id
 
 plans:
     install:
