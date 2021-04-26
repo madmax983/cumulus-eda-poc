@@ -53,32 +53,15 @@ flows:
                     version_id: ^^create_package_version.subscriber_package_version_id
                     promote_dependencies: True
             4:
-                task: github_release
-                options:
-                    version: ^^create_package_version.version_number
-                    version_id: ^^create_package_version.subscriber_package_version_id
-                    dependencies: ^^create_package_version.dependencies
-                    package_type: 2GP
-            5:
-                task: github_release_notes
-                ignore_failure: True # Attempt to generate release notes but don't fail build
-                options:
-                  link_pr: True
-                  publish: True
-                  tag: ^^github_release.tag_name
-                  include_empty: True
-                  version_id: ^^create_package_version.subscriber_package_version_id
-            6:
                 task: update_dependencies
                 options:
                     org: qa
-                    resolution_strategy: commit_status
-                    dependencies: ^^github_release.dependencies
-            7:
+            5:
                 task: install_managed
                 options:
                   name: CumulusEDAPOC-Unlocked
-                  version: ^^create_package_version.subscriber_package_version_i
+                  org: qa
+                  version: ^^create_package_version.subscriber_package_version_id
 
 plans:
     install:
