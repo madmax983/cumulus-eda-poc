@@ -33,9 +33,6 @@ jobs:
       run: |
         python -m pip install -U pip
         pip install cumulusci
-    - name: Create Unlocked Package
+    - name: Create Unlocked Package And Install in QA Org
       run: |
         cci flow run qa_unlocked_build --org feature --delete-org
-    - name: Install in QA org
-      run: |
-        cci flow run qa_unlocked_install --org qa -o install_managed__version ${{ env.subscriber_package_version_id }}
