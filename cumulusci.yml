@@ -77,7 +77,7 @@ flows:
             3:
                 task: install_managed
                 options:
-                  version: latest
+                    version: latest
 
 plans:
     install:
