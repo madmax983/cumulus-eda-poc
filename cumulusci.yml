@@ -56,7 +56,7 @@ flows:
             4:  
                 task: command
                 options:
-                    command: echo ::set-ouput name=SUBSCRIBER_VERSION_ID::$(echo $SUBSCRIBER_VERSION_ID)
+                    command: echo "SUBSCRIBER_VERSION_ID=$(echo $SUBSCRIBER_VERSION_ID)" >> $GITHUB_ENV
                     env:
                         SUBSCRIBER_VERSION_ID: ^^create_package_version.subscriber_package_version_id
                     interactive: True
