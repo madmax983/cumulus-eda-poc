@@ -52,6 +52,10 @@ flows:
                 options:
                     version_id: ^^create_package_version.subscriber_package_version_id
                     promote_dependencies: True
+            4:
+                task: command
+                options:
+                    command: echo ^^create_package_version.subscriber_package_version_id > subscriber_package_version_id
     qa_unlocked_install:
         steps:
             1.0:
@@ -60,7 +64,7 @@ flows:
                 task: install_managed
                 options:
                     name: CumulusEDAPOC-Unlocked
-                    version: ^^create_package_version.subscriber_package_version_id
+                    version: subscriber_package_version_id
 
 plans:
     install:
