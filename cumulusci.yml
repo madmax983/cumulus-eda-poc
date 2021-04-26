@@ -55,7 +55,7 @@ flows:
             4:
                 task: command
                 options:
-                    command: echo ^^create_package_version.subscriber_package_version_id > subscriber_package_version_id
+                    command: echo "subscriber_package_version_id=$(echo ^^create_package_version.subscriber_package_version_id)" >> $GITHUB_ENV
     qa_unlocked_install:
         steps:
             1.0:
@@ -64,7 +64,7 @@ flows:
                 task: install_managed
                 options:
                     name: CumulusEDAPOC-Unlocked
-                    version: subscriber_package_version_id
+                    version: ${{ env.subscriber_package_version_id }}
 
 plans:
     install:
