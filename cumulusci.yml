@@ -73,15 +73,11 @@ flows:
         description: Install the current unlocked pacakge in a QA test org.
         steps:
             1:
-              task: github_package_data
-              options:
-                  context: $project_config.project__git__2gp_context
-            2:
                 task: update_dependencies
             3:
                 task: install_managed
                 options:
-                  version: ^^github_package_data.version_id
+                  version: latest
 
 plans:
     install:
