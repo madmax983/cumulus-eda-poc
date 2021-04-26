@@ -36,3 +36,6 @@ jobs:
     - name: Create Unlocked Package And Install in QA Org
       run: |
         cci flow run qa_unlocked_build --org feature --delete-org
+    - name: Install Unlocked package in QA org
+      run: |
+        cci flow run qa_unlocked_install --org qa
