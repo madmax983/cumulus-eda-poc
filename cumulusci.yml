@@ -56,7 +56,8 @@ flows:
                 task: update_dependencies
                 options:
                     org: qa
-                    dependencies: ^^create_package_version.dependencies.ids
+                    resolution_strategy: commit_status
+                    dependencies: ^^create_package_version.dependencies
             5:
                 task: install_managed
                 options:
