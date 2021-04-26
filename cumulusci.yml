@@ -56,7 +56,7 @@ flows:
                 task: update_dependencies
                 options:
                     org: qa
-                    dependencies: ${{fromJson(^^create_package_version.dependencies).ids}}
+                    dependencies: echo ${{fromJson(^^create_package_version.dependencies).ids}}
             5:
                 task: install_managed
                 options:
