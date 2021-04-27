@@ -2,10 +2,21 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true
+            "default": true,
+            "package": "Cumulus-Unlocked",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "dependencies": [ 
+                {
+                   "package": "EDA@1.112"
+                }
+             ]
         }
     ],
     "namespace": "",
     "sourceApiVersion": "48.0",
-    "sfdcLoginUrl": "https://login.salesforce.com"
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "packageAliases": {
+        "Cumulus-Unlocked": "0Ho5e0000004CICCA2"
+    }
 }

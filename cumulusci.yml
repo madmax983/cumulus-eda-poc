@@ -37,6 +37,107 @@ flows:
         steps:
             0.5:
                 task: None
+    qa_unlocked_build:
+        description: Upload and install an unlocked package
+        steps:
+            1:
+                task: update_dependencies
+            2:
+                task: create_package_version
+                options:
+                    package_type: Unlocked
+                    package_name: CumulusEDAPOC-UnlockedOrgDependent
+                    org_dependent: True
+            3:
+                task: promote_package_version
+                options:
+                    version_id: ^^create_package_version.subscriber_package_version_id
+                    promote_dependencies: True
+    qa_unlocked_install:
+        description: Install the current unlocked pacakge in a QA test org.
+        steps:
+            1:
+                task: update_dependencies
+            2:
+                task: update_admin_profile
+                options:
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
+    release_package:
+        description: Release a 2GP Managed Package
+        steps:
+            1:
+                task: update_dependencies
+            2:
+                task: create_package_version
+                options:
+                    package_type: Managed
+                    package_name: $project_config.project__package__name
+                    skip_validation: False
+                    ancestor_id: latest_github_release
+                    version_base: latest_github_release
+                    version_type: minor
+            3:
+                task: promote_package_version
+                options:
+                    version_id: ^^create_package_version.subscriber_package_version_id
+                    promote_dependencies: True
+            4:
+                task: github_release
+                options:
+                    version: ^^create_package_version.version_number
+                    version_id: ^^create_package_version.version_id
+                    dependencies: ^^create_package_version.dependencies
+                    package_type: 2GP
+            5:
+                task: github_release_notes
+                ignore_failure: True # Attempt to generate release notes but don't fail build
+                options:
+                    link_pr: True
+                    publish: True
+                    tag: ^^github_release.tag_name
+                    include_empty: True
+                    version_id: ^^create_package_version.subscriber_package_version_id
+    install_package:
+        description: Install the current unlocked pacakge in a QA test org.
+        steps:
+            1:
+                task: update_dependencies
+            2:
+                task: update_admin_profile
+                options:
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
+            3:
+                task: install_managed
+    dev_org:
+        steps:
+            5:
+                task: update_admin_profile
+                options:
+                    record_types:
+                        - record_type: "Account.Administrative"
+                          default: true
+                        - record_type: "Account.Academic_Program"
+                        - record_type: "Account.Business_Organization"
+                        - record_type: "Account.Educational_Institution"
+                        - record_type: "Account.HH_Account"
+                        - record_type: "Account.Sports_Organization"
+                        - record_type: "Account.University_Department"
 
 plans:
     install:
