@@ -39,6 +39,6 @@ jobs:
     - name: Install in QA org
       run: |
         cci flow run qa_unlocked_install --org qa
-        subscriberPackageVersionId=$( sfdx force:package:version:list -v mark.masterson@robotsandpencils.com -p 0Ho2I000000001TSAQ --orderby PatchVersion --released  --json | jq '.result[0].SubscriberPackageVersionId' ) 
+        subscriberPackageVersionId=$( sfdx force:package:version:list -v mark.masterson@robotsandpencils.com -p 0Ho2I000000001TSAQ --orderby PatchVersion --released  --json | jq -r '.result[0].SubscriberPackageVersionId' ) 
         echo $subscriberPackageVersionId
         cci task run install_managed --org qa --version $subscriberPackageVersionId
