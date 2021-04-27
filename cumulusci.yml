@@ -53,22 +53,6 @@ flows:
                 options:
                     version_id: ^^create_package_version.subscriber_package_version_id
                     promote_dependencies: True
-            4:
-                task: github_release
-                options:
-                    version: ^^create_package_version.version_number
-                    version_id: ^^create_package_version.subscriber_package_version_id
-                    dependencies: ^^create_package_version.dependencies
-                    package_type: 2GP
-            5:
-                task: github_release_notes
-                ignore_failure: True # Attempt to generate release notes but don't fail build
-                options:
-                    link_pr: True
-                    publish: True
-                    tag: ^^github_release.tag_name
-                    include_empty: True
-                    version_id: ^^create_package_version.subscriber_package_version_id
     qa_unlocked_install:
         description: Install the current unlocked pacakge in a QA test org.
         steps:
