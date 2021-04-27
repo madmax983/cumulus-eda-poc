@@ -74,8 +74,6 @@ flows:
         steps:
             1:
                 task: update_dependencies
-                options: 
-                    resolution_strategy: preproduction
 
 plans:
     install:
