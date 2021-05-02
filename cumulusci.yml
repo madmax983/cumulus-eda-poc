@@ -94,7 +94,7 @@ flows:
                 options:
                     version: ^^create_package_version.version_number
                     version_id: ^^create_package_version.version_id
-                    dependencies: ^^create_package_version.dependencies
+                    message: ^^create_package_version.dependencies
                     package_type: 2GP
             5:
                 task: github_release_notes

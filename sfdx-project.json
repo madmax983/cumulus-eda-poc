@@ -5,18 +5,14 @@
             "default": true,
             "package": "Cumulus-Unlocked",
             "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "dependencies": [ 
-                {
-                   "package": "EDA@1.112"
-                }
-             ]
+            "versionNumber": "0.1.0.NEXT"
         }
     ],
     "namespace": "",
     "sourceApiVersion": "48.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
-        "Cumulus-Unlocked": "0Ho5e0000004CICCA2"
+        "Cumulus-Unlocked": "0Ho5e0000004CICCA2",
+        "Cumulus EDA POC": "0Ho2I000000001iSAA"
     }
 }
