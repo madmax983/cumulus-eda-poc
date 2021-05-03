@@ -31,7 +31,7 @@ RESULT_JSON=`sfdx force:data:soql:query -u devhub -t -q "SELECT Dependencies FRO
  
 # Parse the json string using python to test whether the result json contains a list of ids or not.
  
-DEPENDENCIES=`echo $RESULT_JSON | python -c 'import sys, json; print json.load(sys.stdin)["result"]["records"][0]["Dependencies"]'`
+DEPENDENCIES=`echo $RESULT_JSON | jq -r '.result.records[0].Dependencies.ids | map_values(.subscriberPackageVersionId) | @sh'`
  
  
 # If the parsed dependencies is None, the package has no dependencies. Otherwise, parse the result into a list of ids.
@@ -39,24 +39,6 @@ DEPENDENCIES=`echo $RESULT_JSON | python -c 'import sys, json; print json.load(s
 # Then loop through the ids to install each of the dependent packages.
  
 if [[ "$DEPENDENCIES" != 'None' ]]; then
- 
- 
-    DEPENDENCIES=`echo $RESULT_JSON | python -c '
- 
-import sys, json
- 
-ids = json.load(sys.stdin)["result"]["records"][0]["Dependencies"]["ids"]
- 
-dependencies = []
- 
-for id in ids:
- 
-    dependencies.append(id["subscriberPackageVersionId"])
- 
-print " ".join(dependencies)
- 
-'` 
- 
  
     echo "The package you are installing depends on these packages (in correct dependency order): "$DEPENDENCIES
  
