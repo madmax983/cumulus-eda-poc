@@ -31,7 +31,7 @@ RESULT_JSON=`sfdx force:data:soql:query -u devhub -t -q "SELECT Dependencies FRO
  
 # Parse the json string using python to test whether the result json contains a list of ids or not.
  
-DEPENDENCIES=`echo $RESULT_JSON | jq -r '.result.records[0].Dependencies.ids | map_values(.subscriberPackageVersionId) | @sh'`
+DEPENDENCIES=`echo $RESULT_JSON | jq -r '.result.records[0].Dependencies.ids | map_values(.subscriberPackageVersionId) | @sh' | tr -d \'`
  
  
 # If the parsed dependencies is None, the package has no dependencies. Otherwise, parse the result into a list of ids.
