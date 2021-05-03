@@ -38,4 +38,4 @@ jobs:
         cci flow run release_package --org feature --delete-org
     - name: Install in QA org
       run: |
-        sh ./bin/install.sh
+        bash ./bin/install.sh
