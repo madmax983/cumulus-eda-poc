@@ -3,7 +3,6 @@
  */
 public class HelloWorld {
     public static String printHelloWorld(String response) {
-        System.debug(response);
         return response;
     }
 }
