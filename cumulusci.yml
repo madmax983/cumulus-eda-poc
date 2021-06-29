@@ -41,14 +41,12 @@ flows:
         description: Upload and install an unlocked package
         steps:
             1:
-                task: update_dependencies
-            2:
                 task: create_package_version
                 options:
                     package_type: Unlocked
                     package_name: CumulusEDAPOC-UnlockedOrgDependent
                     org_dependent: True
-            3:
+            2:
                 task: promote_package_version
                 options:
                     version_id: ^^create_package_version.subscriber_package_version_id
@@ -74,8 +72,6 @@ flows:
         description: Release a 2GP Managed Package
         steps:
             1:
-                task: update_dependencies
-            2:
                 task: create_package_version
                 options:
                     package_type: Managed
@@ -84,18 +80,18 @@ flows:
                     ancestor_id: latest_github_release
                     version_base: latest_github_release
                     version_type: minor
-            3:
+            2:
                 task: promote_package_version
                 options:
                     version_id: ^^create_package_version.subscriber_package_version_id
                     promote_dependencies: True
-            4:
+            3:
                 task: github_release
                 options:
                     version: ^^create_package_version.version_number
                     version_id: ^^create_package_version.version_id
                     package_type: 2GP
-            5:
+            4:
                 task: github_release_notes
                 ignore_failure: True # Attempt to generate release notes but don't fail build
                 options:
