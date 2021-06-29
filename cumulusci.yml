@@ -46,6 +46,7 @@ flows:
                     package_type: Unlocked
                     package_name: CumulusEDAPOC-UnlockedOrgDependent
                     org_dependent: True
+                    version_type: minor
             2:
                 task: promote_package_version
                 options:
